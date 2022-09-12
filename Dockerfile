@@ -26,8 +26,8 @@ RUN apt-get install -y git \
 WORKDIR /usr/src/app/app
 
 # development like environment
-CMD ["python","app.py"]
+#CMD ["python","app.py"]
 
 # production like environment
-#CMD ["sh", "-c", "gunicorn --worker-class eventlet -w 1 app:app --bind 0.0.0.0:8000"]
+CMD ["sh", "-c", "gunicorn --worker-class eventlet -w 1 app:app --bind 0.0.0.0:8000"]
 
