@@ -12,6 +12,7 @@ from use_cases.login import LoginResult, SignupResult, Activate
 from use_cases.news import NewsResult
 from use_cases.user import UserResult, UpdateResult, PasswordResult, PasswordReset, PasswordRestore
 from use_cases.contact import ContactResponse
+from use_cases.thrust import ThrustResult
 
 app = create()
 
@@ -41,6 +42,13 @@ def airfoil():
 def battery():
     params = request.get_json()
     uc = BatteryResult(params)
+    response = uc.execute()
+    return response
+
+@app.route('/thrust', methods=['POST'])
+def thrust():
+    params = request.get_json()
+    uc = ThrustResult(params)
     response = uc.execute()
     return response
 

@@ -104,7 +104,7 @@ class AircraftThrust(object):
         #print("Maximum flight velocity [Km/h]:",MaxFlightVelocity)
         #X = ABC[5,:];  #this is the V in the other module, the "dynamic" velocity
         #Y = ABC[4,:];  #This is T in the other module, is the dynamuc thrust at 100% throttle
-        return T1,T2,T3,T4,T5,Town,V0,MaxFlightVelocity
+        return T1.tolist(),T2.tolist(),T3.tolist(),T4.tolist(),T5.tolist(),Town.tolist(),V0.tolist(),MaxFlightVelocity
 
 #Small dialog text with the following message:
 #Assuming the aircraft is able to rotate at 1.1Vstall

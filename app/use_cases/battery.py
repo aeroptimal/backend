@@ -31,6 +31,5 @@ class BatteryResult:
             "CP": CP,
             "TP": TP,
         }
-        print(data)
         return Response(response=json.dumps(data), status=200, mimetype='application/json')
 
