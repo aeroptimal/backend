@@ -1,6 +1,4 @@
 from flask import Flask
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 
 from conf import settings
 

@@ -12,7 +12,7 @@ from use_cases.login import LoginResult, SignupResult, Activate
 from use_cases.news import NewsResult
 from use_cases.user import UserResult, UpdateResult, PasswordResult, PasswordReset, PasswordRestore
 from use_cases.contact import ContactResponse
-from use_cases.thrust import ThrustResult
+from use_cases.thrust import ThrustResult, TakeoffResult
 
 app = create()
 
@@ -49,6 +49,13 @@ def battery():
 def thrust():
     params = request.get_json()
     uc = ThrustResult(params)
+    response = uc.execute()
+    return response
+
+@app.route('/takeoff', methods=['POST'])
+def takeoff():
+    params = request.get_json()
+    uc = TakeoffResult(params)
     response = uc.execute()
     return response
 

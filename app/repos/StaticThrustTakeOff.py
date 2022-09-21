@@ -158,7 +158,7 @@ class TakeOffRun(object):
           #print("Takeoff time [s]:",tt)
           #print("Takeoff runway [m]:",xx)
           names = ['100']
-          return names,xx,tt
+          return names,[xx],[tt]
        
                     
     def ComputeTakeOffRunDynamic(self): 
