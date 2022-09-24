@@ -23,9 +23,25 @@ class ThrustResult:
         V = float(self.json['V'])
         d = float(self.json['d'])
         P = float(self.json['P'])
+        if not (0 <= p):
+            return Response(response=json.dumps({"error":"Invalid input on Density"}), status=400, mimetype='application/json')
+        if not (0 <= S):
+            return Response(response=json.dumps({"error":"Invalid input on Wing Area"}), status=400, mimetype='application/json')
+        if not (0 <= Kv):
+            return Response(response=json.dumps({"error":"Invalid input on Motor Constant"}), status=400, mimetype='application/json')
+        if not (0 <= Cd):
+            return Response(response=json.dumps({"error":"Invalid input on Drag Coefficient"}), status=400, mimetype='application/json')
+        if not (0 <= V):
+            return Response(response=json.dumps({"error":"Invalid input on Battery Voltage"}), status=400, mimetype='application/json')
+        if not (0 <= d):
+            return Response(response=json.dumps({"error":"Invalid input on Propeller Diameter"}), status=400, mimetype='application/json')
+        if not (0 <= p):
+            return Response(response=json.dumps({"error":"Invalid input on Propeller Pitch"}), status=400, mimetype='application/json')
         try:
             if self.json.get('Own'):
                 Own = float(self.json['Own'])
+                if not (0 <= Own):
+                    return Response(response=json.dumps({"error":"Invalid input on Propeller Throttle"}), status=400, mimetype='application/json')
                 thrust = AircraftThrust(S,p,Cd,V,Kv,d,P,Own)
             else:
                 Own = ''
@@ -68,6 +84,26 @@ class TakeoffResult:
         V0 = self.json['V0']
         T = float(self.json['T']) 
         Ts = int(self.json['Ts'])
+
+        if not (0 <= mass):
+            return Response(response=json.dumps({"error":"Invalid input on Mass"}), status=400, mimetype='application/json')
+        if not (0 <= rrc):
+            return Response(response=json.dumps({"error":"Invalid input on Rolling Resistance Coefficient"}), status=400, mimetype='application/json')
+        if not (0 <= p2):
+            return Response(response=json.dumps({"error":"Invalid input on Rolling Density"}), status=400, mimetype='application/json')
+        if not (0 <= S2):
+            return Response(response=json.dumps({"error":"Invalid input on Wing Area"}), status=400, mimetype='application/json')
+        if not (0 <= Clmax):
+            return Response(response=json.dumps({"error":"Invalid input on Take-off Lift Coefficient"}), status=400, mimetype='application/json')
+        if not (0 <= Cltakeoff):
+            return Response(response=json.dumps({"error":"Invalid input on Stall Lift Coefficient"}), status=400, mimetype='application/json')
+        if not (0 <= Cd):
+            return Response(response=json.dumps({"error":"Invalid input on Drag Coefficient"}), status=400, mimetype='application/json')
+        if not (0 <= Own):
+            return Response(response=json.dumps({"error":"Invalid input on Throttle"}), status=400, mimetype='application/json')
+        if not (0 <= T):
+            return Response(response=json.dumps({"error":"Invalid input on Static Thrust"}), status=400, mimetype='application/json')    
+        
         try:
             if Ts == 1:
                 takeoff = TakeOffRun(mass,rrc,p2,S2,Cltakeoff,Clmax,Cd,[],Ts,[],[],[],[],[],[],[],T)
